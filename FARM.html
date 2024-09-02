@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golden Harvest Farm</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@400;600&display=swap");
+
+      /* Color Scheme */
+      :root {
+        --primary-color: #4caf50; /* Green */
+        --secondary-color: #8bc34a; /* Light Green */
+        --accent-color: #ffeb3b; /* Yellow */
+        --text-color: #2c3e50; /* Dark Blue */
+        --light-color: #fafafa; /* Light Gray */
+        --dark-color: #1b5e20; /* Dark Green */
+        --background-gradient: linear-gradient(
+          135deg,
+          #4caf50,
+          #8bc34a
+        ); /* Green Gradient */
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--light-color);
+        background-image: var(--background-gradient);
+        background-attachment: fixed;
+        background-size: cover;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      header {
+        background-color: var(--dark-color);
+        color: var(--light-color);
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      nav ul {
+        list-style-type: none;
+        display: flex;
+      }
+
+      nav ul li {
+        margin-left: 20px;
+      }
+
+      nav ul li a {
+        color: var(--light-color);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+        font-size: 1.1rem;
+      }
+
+      nav ul li a:hover {
+        color: var(--accent-color);
+      }
+
+      .hero {
+        background-image: url("Farm-HD-Wallpaper-Free-download.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--light-color);
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h2 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        font-family: "Playfair Display", serif;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        font-weight: 600;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: var(--dark-color);
+        padding: 0.8rem 1.5rem;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .btn:hover {
+        background-color: var(--secondary-color);
+        color: var(--light-color);
+      }
+
+      .quote {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-style: italic;
+        text-align: center;
+        padding: 4rem 0;
+        background-color: var(--secondary-color);
+        color: var(--light-color);
+      }
+
+      .container1 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 4rem;
+      }
+
+      .box {
+        position: relative;
+        width: 50vh;
+        height: 50vh;
+        overflow: hidden;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .box img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease; /* Smooth zoom transition */
+      }
+
+      .box:hover img {
+        transform: scale(1.1); /* Zoom effect */
+      }
+
+      .text-overlay {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-family: "Herbarium", Arial, Helvetica, sans-serif;
+        font-size: 1.2rem;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      /* Dynamic Content Container */
+      .dynamic-content {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .dynamic-content.active {
+        display: block;
+      }
+
+      footer {
+        background-color: var(--dark-color);
+        color: var(--light-color);
+        text-align: center;
+        padding: 2rem 0;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Farm Link</h1>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="features">
+          <div class="hero-content fade-in">
+            <h2>Welcome to Farm Link Website</h2>
+            <p>An app where both farmer and consumer gets profit</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote">
+        <div class="container">
+          <p>
+            "When farmers thrive, consumers flourish. Together, we cultivate a
+            sustainable future where the harvest is shared, and everyone
+            prospers."
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="container1">
+          <div class="box" onclick="showContent('Fresh Fruits', 'Our farm offers a variety of fresh, juicy fruits that are harvested at peak ripeness to ensure the best taste.')">
+            <img src="fruit1.jpg" alt="Fruits" />
+            <div class="text-overlay">Fresh Fruits</div>
+          </div>
+          <div class="box" onclick="showContent('Organic Vegetables', 'We grow our vegetables organically, ensuring that they are free from harmful pesticides and full of nutrients.')">
+            <img src="vegetables.jpg" alt="Vegetables" />
+            <div class="text-overlay">Organic Vegetables</div>
+          </div>
+          <div class="box" onclick="showContent('Farm Locations', 'Our farms are located in pristine environments, ensuring the highest quality produce.')">
+            <img src="map.jpg" alt="Farm Locations" />
+            <div class="text-overlay">Farm Locations</div>
+          </div>
+          <div class="box" onclick="showContent('High-Quality Pulses', 'Our pulses are carefully selected and processed to retain their high nutritional value.')">
+            <img src="pulses.jpg" alt="Pulses" />
+            <div class="text-overlay">High-Quality Pulses</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dynamic Content Container -->
+      <section class="dynamic-content" id="dynamicContent"></section>
+    </main>
+
+    <footer>
+      <div class="container"></div>
+    </footer>
+
+    <script>
+      function showContent(title, content) {
+        const dynamicContent = document.getElementById("dynamicContent");
+        dynamicContent.innerHTML = `
+          <h2>${title}</h2>
+          <p>${content}</p>
+        `;
+        dynamicContent.classList.add("active");
+      }
+    </script>
+  </body>
+</html>
